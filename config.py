@@ -18,7 +18,15 @@ AUTH_URL = BASE_URL + "oauth2/authorize"
 TOKEN_URL = BASE_URL + "oauth2/token"
 USER_URL = BASE_URL + "users/@me"
 GUILDS_URL = BASE_URL + "users/@me/guilds"
-
+MEDIA_URL = "https://cdn.discordapp.com/"
+GUILDS_URL = BASE_URL + "users/@me/guilds"
 REDIRECT_URL = "http://{}:{}/callback".format(
     HOST, PORT
 )
+
+#BOT SERVER SETTINGS
+BOT_TOKEN = 'NzA3NDk3Nzg4NzM2NTM2NTg4.XvImkA.D4gx23u9eH8Hty_i_8JVDuW7T_s'
+SERVER_ID = 665609184670121995
+ONLINE_CHANNEL_ID = 712630705544364062
+USERS_CHANNEL_ID = 712630741489549322
+SERVER_URL = "https://discord.gg/DRV9x2d"

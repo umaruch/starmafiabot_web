@@ -3,8 +3,62 @@
     <head>
         <meta charset="utf-8">
         <title>Кира Фука</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     </head>
     <body>
-        
+        {% if fl == True %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ avatar }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ username }} {{ desc }}</h5>
+              <a href="{{url_for('logout')}}" class="btn btn-success">Выйти</a>
+            </div>
+        </div>
+        {% if url == None %}
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Discord ID</th>
+                    <th scope="col">Messages</th>
+                    <th scope="col">Voice Time</th>
+                    <th scope="col">Server XP</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for user in users  %}
+                    <tr>
+                        <th>
+                            {{ user.discord_id }}
+                        </th>
+                        <th>
+                            {{ user.messages }}
+                        </th>
+                        <th>
+                            {{ user.voice_time }}
+                        </th>
+                        <th>
+                            {{ user.xp}}
+                            <!-- <form method="POST" action="user/change/">
+                                <input type="text" name="xp" value="{{ user.xp }}"> 
+                                <input type="submit" value="Сохранить">
+                            </form> -->
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h5>Я вижу вас нет на нашем сервере</h5>
+            <a href="{{ url }}" class="btn btn-warning btn-sm">Присоединиться</a>
+        {% endif %}
+        {% else %}
+        <div class="jumbotron">
+            <h1 class="display-4">Космические мафиозники</h1>
+            <p class="lead">Этот Дискорд сервер принадлежит самым отбитым мразям в галактике после спидранеров</p>
+            <hr class="my-4">
+            <p>Если вы уже принадлежите нам или все-же решились присоединиться то нажмите на кнопку ниже(!а лучше еще 7 раз подумать!)</p>
+            <a class="btn btn-danger btn-lg" href="{{ url_for('auth') }}" role="button">Войти</a>
+          </div>
+        {% endif %}
     </body>
 </html>

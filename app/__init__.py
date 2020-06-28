@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
 import os
@@ -7,10 +6,9 @@ from config import AppConfig
 #Для того чтобы позволить работать входу через дискорд работать в хттп(БЕЗ "С")
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
-app = Flask('SpaceMafiaBot')
+app = Flask('SpaceMafiaBot', template_folder= 'app/templates')
 app.config.from_object(AppConfig)
 db = SQLAlchemy(app)
-lm = LoginManager(app)
 
 from app import webroutes, botroutes
 

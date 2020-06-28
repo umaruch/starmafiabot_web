@@ -1,21 +1,11 @@
-from app import db, lm
-from flask_login import UserMixin, login_user
+from app import db
 
-class LoginUser(db.Model, UserMixin):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    discord_token =  db.Column(db.String(64), nullable = False, unique = True)
+    discord_id = db.Column(db.Integer, unique = True, nullable = False)
+    xp = db.Column(db.Integer, default = 0)
+    messages = db.Column(db.Integer, default = 0)
+    voice_time = db.Column(db.Integer, default = 0)#В минутах
 
-    @staticmethod
-    def login(token):
-        user = LoginUser.query.filter_by(discord_token = token).first()
-        if not user:
-            user = LoginUser(discord_token = token)
-            db.session.add(user)
-            db.session.commit()
-        login_user(user, True)
-
-
-
-@lm.user_loader
-def load_user(id):
-    return LoginUser.query.get(id)
+    def __repr__(self):
+        return f"User Object <{self.discord_id}>"
